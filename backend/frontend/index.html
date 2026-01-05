@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial AI Predictive Maintenance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🏭 Industrial AI Predictive Maintenance System</h1>
+            <p>Real-time Equipment Health Monitoring & Failure Prediction</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Status Cards -->
+        <div class="status-cards" id="statusCards">
+            <div class="status-card">
+                <div class="card-icon">📊</div>
+                <h3>Total Machines</h3>
+                <p class="card-value" id="totalMachines">-</p>
+            </div>
+            <div class="status-card">
+                <div class="card-icon">⚠️</div>
+                <h3>Failure Rate</h3>
+                <p class="card-value" id="failureRate">-</p>
+            </div>
+            <div class="status-card">
+                <div class="card-icon">🌡️</div>
+                <h3>Avg Temperature</h3>
+                <p class="card-value" id="avgTemp">-</p>
+            </div>
+            <div class="status-card">
+                <div class="card-icon">🔴</div>
+                <h3>High Risk</h3>
+                <p class="card-value" id="highRisk">-</p>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Prediction Form -->
+            <div class="panel">
+                <h2>🔧 Equipment Health Check</h2>
+                <form id="predictionForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Air Temperature (K)</label>
+                            <input type="number" id="airTemp" step="0.1" value="298.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Process Temperature (K)</label>
+                            <input type="number" id="processTemp" step="0.1" value="309.0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Rotational Speed (rpm)</label>
+                            <input type="number" id="rotSpeed" value="1500" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Torque (Nm)</label>
+                            <input type="number" id="torque" step="0.1" value="42.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tool Wear (min)</label>
+                            <input type="number" id="toolWear" value="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Machine Type</label>
+                            <select id="machineType" required>
+                                <option value="L">Low Quality (L)</option>
+                                <option value="M" selected>Medium Quality (M)</option>
+                                <option value="H">High Quality (H)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary" id="predictBtn">
+                        🔍 Predict Equipment Health
+                    </button>
+                </form>
+            </div>
+
+            <!-- Prediction Results -->
+            <div class="panel">
+                <h2>📊 Prediction Results</h2>
+                <div id="resultsContainer" class="results-empty">
+                    <p>Enter equipment parameters and click "Predict" to see results</p>
+                </div>
+                <div id="resultsContent" class="results-content" style="display: none;">
+                    <div class="result-status" id="resultStatus"></div>
+                    <div class="risk-score-circle" id="riskScore">
+                        <div class="score-value">0%</div>
+                        <div class="score-label">Risk Score</div>
+                    </div>
+                    <div class="probability-grid">
+                        <div class="prob-item">
+                            <div class="prob-label">Healthy</div>
+                            <div class="prob-value" id="healthyProb">0%</div>
+                        </div>
+                        <div class="prob-item">
+                            <div class="prob-label">Failure</div>
+                            <div class="prob-value" id="failureProb">0%</div>
+                        </div>
+                    </div>
+                    <div class="recommendation" id="recommendation"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment List -->
+        <div class="panel">
+            <h2>🏭 Equipment Monitoring Dashboard</h2>
+            <div class="table-container">
+                <table class="equipment-table" id="equipmentTable">
+                    <thead>
+                        <tr>
+                            <th>Machine ID</th>
+                            <th>Type</th>
+                            <th>Air Temp</th>
+                            <th>Process Temp</th>
+                            <th>Speed</th>
+                            <th>Torque</th>
+                            <th>Tool Wear</th>
+                            <th>Risk Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equipmentTableBody">
+                        <tr>
+                            <td colspan="9" class="loading">Loading equipment data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="panel">
+            <h2>📈 Failure Distribution Analysis</h2>
+            <div id="chartContainer" class="chart-container">
+                <canvas id="failureChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Industrial AI Predictive Maintenance System | Powered by Machine Learning</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
